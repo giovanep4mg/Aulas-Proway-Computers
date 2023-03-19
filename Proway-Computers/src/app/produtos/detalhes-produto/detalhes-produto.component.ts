@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IProduto } from 'src/app/produtos';
+import { NotificacaoService } from 'src/app/notificacao.service';
+import { IProduto, IProdutoCarrinho } from 'src/app/produtos';
 import { ProdutosService } from 'src/app/produtos.service';
+import { CarrinhoService } from './../../carrinho.service';
 
 @Component({
   selector: 'app-detalhes-produto',
@@ -16,7 +18,10 @@ export class DetalhesProdutoComponent {
 
   constructor(
     private produtosService: ProdutosService,
-    private route: ActivatedRoute,){}
+    private route: ActivatedRoute,
+    private notificacaoService : NotificacaoService,
+    private CarrinhoService: CarrinhoService,
+    ){}
 
     //Pegar os parametros
   ngOnInit(): void {
@@ -29,6 +34,25 @@ export class DetalhesProdutoComponent {
 
     //pegar o id do produto,
     this.produto = this.produtosService.getOne(produtoId);
+
+  }
+
+  // método para adicionar o produto no carrinho
+  adicionarAoCarrinho(){
+
+    // "janelinha" de notificação, que o produto foi adicionado ao carrinho.
+    this.notificacaoService.notificar("O produto foi adicionado ao carrinho.");
+
+    //cria uma variável  ligada a "interface produto"
+    const produto: IProdutoCarrinho = {
+
+      //pega tudo o que já tem dentro do produto
+      ...this.produto!,
+      //pega a quantidade so produto
+      Quantidade : this.Quantidade
+    }
+    //retorna o produto escolhido salvando no "localStorage"
+    this.CarrinhoService.adicionarAoCarrinho(produto);
 
   }
 
