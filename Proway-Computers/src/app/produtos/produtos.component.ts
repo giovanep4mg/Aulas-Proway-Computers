@@ -1,5 +1,5 @@
 import { IProduto, produtos } from './../produtos';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProdutosService } from '../produtos.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { ProdutosService } from '../produtos.service';
 })
 
 
-export class ProdutosComponent {
+export class ProdutosComponent implements OnInit {
   produtos: IProduto [] | undefined;
 
   //Para importa os serviços de produtos
@@ -17,7 +17,7 @@ export class ProdutosComponent {
 
 
   //Para obter todos os produtos
-  OnInit(): void {
+  ngOnInit(): void {
     this.produtos = this.produtosService.getAll();
 
 }

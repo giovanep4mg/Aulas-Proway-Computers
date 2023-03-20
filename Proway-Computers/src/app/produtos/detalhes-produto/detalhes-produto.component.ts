@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NotificacaoService } from 'src/app/notificacao.service';
 import { IProduto, IProdutoCarrinho } from 'src/app/produtos';
@@ -10,7 +10,7 @@ import { CarrinhoService } from './../../carrinho.service';
   templateUrl: './detalhes-produto.component.html',
   styleUrls: ['./detalhes-produto.component.css']
 })
-export class DetalhesProdutoComponent {
+export class DetalhesProdutoComponent  implements OnInit {
   // Cria a propriedade, variável "produto" que será a lista de produtos ou pode ser indefinida.
   produto: IProduto | undefined ;
 
@@ -48,7 +48,7 @@ export class DetalhesProdutoComponent {
 
       //pega tudo o que já tem dentro do produto
       ...this.produto!,
-      //pega a quantidade so produto
+      //pega a quantidade do produto
       Quantidade : this.Quantidade
     }
     //retorna o produto escolhido salvando no "localStorage"

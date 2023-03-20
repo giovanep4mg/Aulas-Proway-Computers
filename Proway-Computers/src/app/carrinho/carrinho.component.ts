@@ -1,6 +1,6 @@
 import { IProdutoCarrinho } from './../produtos';
 import { CarrinhoService } from './../carrinho.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './carrinho.component.html',
   styleUrls: ['./carrinho.component.css']
 })
-export class CarrinhoComponent {
+export class CarrinhoComponent implements OnInit {
 
   itensCarrinho: IProdutoCarrinho[] = [];
 
@@ -25,18 +25,26 @@ export class CarrinhoComponent {
   }
 
   calcularTotal(){
-    this.total = this.itensCarrinho.reduce((prev, curr) => prev + (curr.preco * curr.Quantidade), 0)
+    this.total = this.itensCarrinho.reduce((prev, curr) => prev + (curr.preco * curr.Quantidade), 0);
   }
 
   removerProdutoCarrinho(produtoId: number){
-    this.itensCarrinho = this.itensCarrinho.filter(item => item.id !== produtoId);
+    // vai filtra os ids que estão dentro do "itens" e apagar só o que foi selecionado
+    this.itensCarrinho = this.itensCarrinho.filter(item => item.id != produtoId);
+
+    //para remover dentro do localStorage
     this.carrinhoService.removerProdutoCarrinho(produtoId);
     this.calcularTotal();
   }
 
   comprar(){
+    //exibe essa mensagem quando a compra for realizada
     alert("Compra realizada com sucesso!!");
+
+    //depois limpa o carrinho
     this.carrinhoService.limparCarrinho();
+
+    //e volta para a página de produtos
     this.router.navigate(["produtos"]);
   }
 

@@ -15,7 +15,7 @@ export class CarrinhoService {
   obtemCarrinho(){
     /**
      * JSON.parse => vai modificar de string para objeto.
-     * se não tiver uma string, vai pegar uma string vazia.
+     * se não tiver uma string , vai pegar um VETOR vazio "lista vazia".
      */
     this.itens = JSON.parse(localStorage.getItem("carrinho") || " [] " );
     return this.itens;
@@ -24,7 +24,7 @@ export class CarrinhoService {
 
   //
   adicionarAoCarrinho( produto: IProdutoCarrinho){
-    // acrescenta os produtos no carrinho
+    // acrescenta o novo produto no carrinho
     this.itens.push(produto);
 
     // salvar esses produtos no "localStorage",convertendo de objeto para string
@@ -33,13 +33,16 @@ export class CarrinhoService {
 
   //método remover do carrinho
   removerProdutoCarrinho(produtoId: number){
-    this.itens = this.itens.filter(item => item.id !== produtoId);
+    // vai filtra os ids que estão dentro do "itens" e apagar só o que foi selecionado
+    this.itens = this.itens.filter(item => item.id != produtoId);
+
+    //atualiza o  localStorage
     localStorage.setItem("carrinho", JSON.stringify(this.itens));
   }
 
   // método
   limparCarrinho(){
-    //para limpar o carrinho
+    //para limpar o carrinho, vai receber um vetor vazio
     this.itens = [] ;
 
     //para limpar o "localStorage"

@@ -11,6 +11,6 @@ export class HeaderComponent {
   constructor( public carrinhoService: CarrinhoService)
   {}
 
-  ngOnInit(): void {}
+
 
 }

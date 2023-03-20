@@ -21,7 +21,7 @@ export class ProdutosService {
   // vai retorna uma produto de acordo com seu id
   getOne(produtoId: number){
     //retorna um produto,procurar(de acordo com essa condiçao)
-    return this.produtos.find(produto => produto.id = produtoId)
+    return this.produtos.find(produto => produto.id = produtoId);
   }
 
 

@@ -3,7 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { NaoEncontradaComponent } from './nao-encontrada/nao-encontrada.component';
 
 const routes: Routes = [
-  { path: 'produtos', loadChildren: () => import('./produtos/produtos.module').then(m => m.ProdutosModule) },
+  // rota para a página de produtos
+  { path: 'produtos', loadChildren: () => import('./produtos/produtos.module').then((m) => m.ProdutosModule) },
+
+  // rota pata a página produtos, quando não for digitado nada
   { path: '', redirectTo: 'produtos', pathMatch: 'full' },
   { path: 'carrinho', loadChildren: () => import('./carrinho/carrinho.module').then(m => m.CarrinhoModule) },
 
