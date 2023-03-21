@@ -32,7 +32,7 @@ export class DetalhesProdutoComponent  implements OnInit {
     //Para pegar o id do produto,"Number" => converte em "número"
     const produtoId = Number (routeParams.get("id"))
 
-    //pegar o id do produto,
+    //passar o id do produto,
     this.produto = this.produtosService.getOne(produtoId);
 
   }

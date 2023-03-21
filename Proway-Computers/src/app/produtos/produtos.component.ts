@@ -13,7 +13,9 @@ export class ProdutosComponent implements OnInit {
   produtos: IProduto [] | undefined;
 
   //Para importa os serviços de produtos
-  constructor(private produtosService: ProdutosService){}
+  constructor(
+    private produtosService: ProdutosService,
+    ){}
 
 
   //Para obter todos os produtos

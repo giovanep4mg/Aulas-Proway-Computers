@@ -8,6 +8,8 @@ const routes: Routes = [
 
   // rota pata a página produtos, quando não for digitado nada
   { path: '', redirectTo: 'produtos', pathMatch: 'full' },
+
+  //rota para o carrinho
   { path: 'carrinho', loadChildren: () => import('./carrinho/carrinho.module').then(m => m.CarrinhoModule) },
 
   //rota para carregar a página não encontrada
@@ -16,7 +18,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  declarations:[],
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

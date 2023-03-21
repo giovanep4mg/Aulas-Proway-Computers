@@ -6,7 +6,7 @@ import { IProdutoCarrinho } from './produtos';
 })
 export class CarrinhoService {
 
-  //itens é um vetor "lista de produtos", que vai iniciar vazia
+  //itens recebe uma interface "IProdutoCarrinho", que pega tudo do vetor "IProduto",e que vai iniciar vazia
   itens: IProdutoCarrinho[] = [] ;
 
   constructor() { }
@@ -47,5 +47,8 @@ export class CarrinhoService {
 
     //para limpar o "localStorage"
     localStorage.clear();
+
+    //atualiza o  localStorage
+    localStorage.setItem("carrinho", JSON.stringify(this.itens));
   }
 }
