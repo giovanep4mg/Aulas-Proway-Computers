@@ -9,8 +9,11 @@ const routes: Routes = [
   // rota pata a página produtos, quando não for digitado nada
   { path: '', redirectTo: 'produtos', pathMatch: 'full' },
 
-  //rota para o carrinho
+  //rota para a página carrinho
   { path: 'carrinho', loadChildren: () => import('./carrinho/carrinho.module').then(m => m.CarrinhoModule) },
+
+  //rota para a página contato
+  { path: 'contato', loadChildren: () => import('./contato/contato.module').then(m => m.ContatoModule) },
 
   //rota para carregar a página não encontrada
   {path:'**',component: NaoEncontradaComponent}
